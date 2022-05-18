@@ -1,7 +1,5 @@
 #include "introsort.hpp"
 #include "bits/stdc++.h"
-#include "insertion_sort.hpp"
-#include "heap_sort.hpp"
 
 namespace itis {
 
