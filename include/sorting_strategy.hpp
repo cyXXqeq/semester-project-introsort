@@ -16,4 +16,4 @@ namespace itis {
     virtual void Sort(std::vector<int> &arr) const = 0;
   };
 
-}  // namespace assignment
+}
