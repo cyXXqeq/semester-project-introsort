@@ -38,6 +38,8 @@ add_library(${PROJECT_NAME} STATIC
         include/introsort.hpp
         src/quick_sort.cpp
         include/quick_sort.hpp
+        src/partitioning.cpp
+        include/partitioning.hpp
         )
 
 # включить предупреждения компилятора для библиотеки (линковка)
