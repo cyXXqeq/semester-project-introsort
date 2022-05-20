@@ -35,7 +35,10 @@ target_compile_definitions(project_paths INTERFACE
 
 add_library(${PROJECT_NAME} STATIC
         src/introsort.cpp
-        include/introsort.hpp)
+        include/introsort.hpp
+        src/quick_sort.cpp
+        include/quick_sort.hpp
+        )
 
 # включить предупреждения компилятора для библиотеки (линковка)
 target_link_libraries(${PROJECT_NAME} PRIVATE project_warnings)
