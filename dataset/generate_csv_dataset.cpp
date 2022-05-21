@@ -40,17 +40,18 @@ int main(int argc, char** argv) {
     }
   }
 
-  // Пример: генерация набора данных
-  for (int papka = 1; papka <= 10; papka++) {
+  // Пример: генерация набора данных bad
+  for (int papka = 1; papka <= 5; papka++) {
     string string_papka;
     if (papka != 10) {
       string_papka = "0" + to_string(papka);
     } else {
       string_papka = to_string(papka);
     }
-    for (int size = 10000; size < 100001; size = size + 10000) {
+    for (int size = 100; size < 1000001; size = size * 10) {
       string string_size = to_string(size);
-      auto output_stream = ofstream(path + "/" + string_papka + "/" + string_size + ".csv", ios::ios_base::app);
+      auto output_stream =
+          ofstream(path + "/" + "bad" + "/" + string_papka + "/" + string_size + ".csv", ios::ios_base::app);
 
       const auto seed = chrono::system_clock::now().time_since_epoch().count();
       auto engine = mt19937(seed);  // без seed`а генератор будет выдавать одни и те же значения
@@ -61,6 +62,63 @@ int main(int argc, char** argv) {
           output_stream << dist(engine) << '\n';
         }
         output_stream << dist(engine) << '\n';
+      }
+    }
+    for (int size = 500; size < 5000001; size = size * 10) {
+      string string_size = to_string(size);
+      auto output_stream =
+          ofstream(path + "/" + "bad" + "/" + string_papka + "/" + string_size + ".csv", ios::ios_base::app);
+
+      const auto seed = chrono::system_clock::now().time_since_epoch().count();
+      auto engine = mt19937(seed);  // без seed`а генератор будет выдавать одни и те же значения
+      auto dist = uniform_int_distribution(-100000, 100000);  // равновероятное распределение генерируемых чисел
+
+      if (output_stream) {
+        for (int counter = 0; counter < size - 1; counter++) {
+          output_stream << dist(engine) << '\n';
+        }
+        output_stream << dist(engine) << '\n';
+      }
+    }
+  }
+  // Пример: генерация набора данных good
+  for (int papka = 1; papka <= 5; papka++) {
+    string string_papka;
+    if (papka != 10) {
+      string_papka = "0" + to_string(papka);
+    } else {
+      string_papka = to_string(papka);
+    }
+    for (int size = 100; size < 1000001; size = size * 10) {
+      string string_size = to_string(size);
+      auto output_stream =
+          ofstream(path + "/" + "good" + "/" + string_papka + "/" + string_size + ".csv", ios::ios_base::app);
+
+      const auto seed = chrono::system_clock::now().time_since_epoch().count();
+      auto engine = mt19937(seed);  // без seed`а генератор будет выдавать одни и те же значения
+      auto dist = uniform_int_distribution(-100000, 100000);  // равновероятное распределение генерируемых чисел
+      auto num = dist(engine);
+
+      if (output_stream) {
+        for (int counter = num; counter <= num + size - 1; counter++) {
+          output_stream << counter << '\n';
+        }
+      }
+    }
+    for (int size = 500; size < 5000001; size = size * 10) {
+      string string_size = to_string(size);
+      auto output_stream =
+          ofstream(path + "/" + "good" + "/" + string_papka + "/" + string_size + ".csv", ios::ios_base::app);
+
+      const auto seed = chrono::system_clock::now().time_since_epoch().count();
+      auto engine = mt19937(seed);  // без seed`а генератор будет выдавать одни и те же значения
+      auto dist = uniform_int_distribution(-100000, 100000);  // равновероятное распределение генерируемых чисел
+      auto num = dist(engine);
+
+      if (output_stream) {
+        for (int counter = num; counter <= num + size - 1; counter++) {
+          output_stream << counter << '\n';
+        }
       }
     }
   }
