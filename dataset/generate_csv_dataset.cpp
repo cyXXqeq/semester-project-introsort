@@ -105,7 +105,7 @@ int main(int argc, char** argv) {
         }
       }
     }
-    for (int size = 500; size < 5000001; size = size * 10) {
+    for (int size = 500; size < 500001; size = size * 10) {
       string string_size = to_string(size);
       auto output_stream =
           ofstream(path + "/" + "good" + "/" + string_papka + "/" + string_size + ".csv", ios::ios_base::app);
