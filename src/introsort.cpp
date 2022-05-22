@@ -1,14 +1,17 @@
 #include "introsort.hpp"
-#include "bits/stdc++.h"  // log
+
+#include <cassert>  // assert
+#include "partitioning.hpp"  // partition, median_of_three
+
 
 namespace itis {
 
-  int binary_search(std::vector<int>& arr, int begin, int index) {
+  int IntroSort::binary_search(const std::vector<int>& arr, int begin, int index) {
 
     // начало, конец и середина области поиска места для вставки [0, index - 1]
     int start = begin;
     int stop = index;
-    int middle = middle_of(start, stop);
+    int middle = IntroSort::middle_of(start, stop);
 
     // ищем до тех пор, пока границы не схлопнулись
     while (start <= stop) {
@@ -33,7 +36,7 @@ namespace itis {
     return start;
   }
 
-  void InsertionSort(std::vector<int>& arr, int start, int stop) {
+  void IntroSort::InsertionSort(std::vector<int>& arr, int start, int stop) {
     // - проходимся по элементам, начиная со второго
     // - после каждой итерации, слева от index будет формироваться отсортированный массив
     // - первый элемент слева считается отсортированным
@@ -54,7 +57,7 @@ namespace itis {
     }
   }
 
-  int median_of_three(std::vector<int>& arr, int start, int stop) {
+  int median_of_three(const std::vector<int>& arr, int start, int stop) {
     assert(!arr.empty() && start >= 0 && stop < arr.size() && start <= stop);
 
     // вычисляем размер области
@@ -115,7 +118,7 @@ namespace itis {
     return curr_pivot_index;
   }
 
-  void BuildMaxHeap(std::vector<int>& arr, int start, int stop) {
+  void IntroSort::BuildMaxHeap(std::vector<int>& arr, int start, int stop) {
     int size = stop - start + 1;
 
     for (int i = Parent(size) + start; i >= start; i--) {
@@ -123,7 +126,7 @@ namespace itis {
     }
   }
 
-  void Heapify(std::vector<int>& arr, int heap_size, int start, int index) {
+  void IntroSort::Heapify(std::vector<int>& arr, int heap_size, int start, int index) {
     assert(heap_size >= 0 && heap_size <= static_cast<int>(arr.size()) && index >= 0);
 
     int largest = index;
@@ -150,22 +153,22 @@ namespace itis {
     }
   }
 
-  int Parent(int index) {
+  int IntroSort::Parent(int index) {
     assert(index >= 0);
     return index / 2 - 1;
   }
 
-  int LeftChild(int index) {
+  int IntroSort::LeftChild(int index) {
     assert(index >= 0);
     return 2 * index + 1;
   }
 
-  int RightChild(int index) {
+  int IntroSort::RightChild(int index) {
     assert(index >= 0);
     return 2 * index + 2;
   }
 
-  void HeapSort(std::vector<int>& arr, int start, int stop) {
+  void IntroSort::HeapSort(std::vector<int>& arr, int start, int stop) {
     // строим двоичную кучу
     BuildMaxHeap(arr, start, stop);
 
@@ -179,7 +182,7 @@ namespace itis {
     }
   }
 
-  void IntroSortUtil(std::vector<int>& arr, int start, int stop, int depth_limit) {
+  void IntroSort::IntroSortUtil(std::vector<int>& arr, int start, int stop, int depth_limit) {
     int size = stop - start + 1;
 
     if (start >= stop) {
@@ -202,7 +205,7 @@ namespace itis {
     IntroSortUtil(arr, partition_point + 1, stop, depth_limit - 1);
   }
 
-  void IntroSort(std::vector<int>& arr) {
+  void IntroSort::Sort(std::vector<int>& arr) {
     int depth_limit = 2 * static_cast<int>(log(static_cast<int>(arr.size())));
 
     IntroSortUtil(arr, 0, static_cast<int>(arr.size()) - 1, depth_limit);

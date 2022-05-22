@@ -13,7 +13,7 @@ namespace itis {
      *
      * @param arr - массив элементов
      */
-    virtual void Sort(std::vector<int> &arr) const = 0;
+    virtual void Sort(std::vector<int> &arr) = 0;
   };
 
-}
+}  // namespace itis

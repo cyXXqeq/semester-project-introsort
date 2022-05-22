@@ -14,7 +14,7 @@ namespace itis {
      *
      * @param arr - массив элементов
      */
-    void Sort(std::vector<int>& arr) const override;
+   void Sort(std::vector<int>& arr) override;
 
    private:
     /**
@@ -30,7 +30,7 @@ namespace itis {
      * @param start - индекс левой границы области сортировки (включительно)
      * @param stop - индекс правой границы области сортировки (включительно)
      */
-    void quick_sort(std::vector<int>& arr, int start, int stop) const;
+    void quick_sort(std::vector<int>& arr, int start, int stop);
   };
 
 }  // namespace itis

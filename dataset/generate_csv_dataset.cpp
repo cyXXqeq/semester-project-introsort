@@ -21,24 +21,6 @@ int main(int argc, char** argv) {
   const auto path = string(kDatasetPath);  // конвертация string_view в string
   cout << "Dataset path: " << path << endl;
 
-  // Пример: чтение набора данных
-  auto input_stream = ifstream(path + "/dataset-example.csv");
-
-  if (input_stream) {
-    int line_number = 0;
-
-    // построчное чтение
-    for (string line; getline(input_stream, line); /* ... */) {
-      auto ss = stringstream(line);  // оборачиваем строку в объект "поток"
-
-      for (string token; getline(ss, token, ','); /* ... */) {
-        cout << "Token: [" << token << "] at line " << line_number << '\n';
-      }
-
-      cout << line << '\n';
-      line_number++;
-    }
-  }
 
   // Пример: генерация набора данных bad
   for (int papka = 1; papka <= 5; papka++) {
@@ -84,6 +66,7 @@ int main(int argc, char** argv) {
   // Пример: генерация набора данных good
   for (int papka = 1; papka <= 5; papka++) {
     string string_papka;
+    cout<<1;
     if (papka != 10) {
       string_papka = "0" + to_string(papka);
     } else {
@@ -104,6 +87,7 @@ int main(int argc, char** argv) {
           output_stream << counter << '\n';
         }
       }
+      output_stream.close();
     }
     for (int size = 500; size < 500001; size = size * 10) {
       string string_size = to_string(size);
@@ -120,6 +104,7 @@ int main(int argc, char** argv) {
           output_stream << counter << '\n';
         }
       }
+      output_stream.close();
     }
   }
   return 0;

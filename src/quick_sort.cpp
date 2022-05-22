@@ -6,11 +6,11 @@
 
 namespace itis {
 
-  void QuickSort::Sort(std::vector<int>& arr) const {
+  void QuickSort::Sort(std::vector<int>& arr) {
     quick_sort(arr, 0, static_cast<int>(arr.size()) - 1);
   }
 
-  void QuickSort::quick_sort(std::vector<int>& arr, int start, int stop) const {
+  void QuickSort::quick_sort(std::vector<int>& arr, int start, int stop){
     assert(start >= 0);
 
     if (start >= stop) {
