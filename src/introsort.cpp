@@ -1,5 +1,6 @@
 #include "introsort.hpp"
 
+#include <cmath>
 #include <cassert>  // assert
 #include "partitioning.hpp"  // partition, median_of_three
 
